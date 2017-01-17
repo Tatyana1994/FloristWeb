@@ -16,7 +16,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/MainServlet</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -25,7 +25,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CurrentTime</servlet-name>
-        <url-pattern>/CurrentTime</url-pattern>
+        <url-pattern>/currentTime</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddItemToFile</servlet-name>
+        <servlet-class>by.iba.florist.web.servlet.AddItemToFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddItemToFile</servlet-name>
+        <url-pattern>/addItemToFile</url-pattern>
     </servlet-mapping>
     
 </web-app>

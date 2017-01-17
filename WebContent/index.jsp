@@ -10,8 +10,14 @@
 
 <h1>Web Service For FloristService</h1>
 
-<form method="get" action="/FloristWeb/CurrentTime">
+<form action="/FloristWeb/currentTime">
   <button>CurrentTime</button>
+</form>
+
+<br>
+
+<form method="get" action="addItem.jsp">
+  <button>Add Item To Database</button>
 </form>
 
 </body>
