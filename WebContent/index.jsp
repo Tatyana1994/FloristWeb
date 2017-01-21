@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Web Service For FloristService</h1>
+<h1>Web Service For Florist Salon</h1>
 
 <form action="/FloristWeb/currentTime">
   <button>CurrentTime</button>

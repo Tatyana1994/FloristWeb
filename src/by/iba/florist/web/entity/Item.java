@@ -1,6 +1,12 @@
 package by.iba.florist.web.entity;
 
-public class Item {
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Item implements Serializable {
 
 	String name;
 	Double price;
@@ -16,7 +22,12 @@ public class Item {
 		this.price = price;
 		this.description = description;
 	}
+	
+	public Item () {
+		
+	}
 
+	@XmlAttribute(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -25,6 +36,7 @@ public class Item {
 		this.name = name;
 	}
 
+	@XmlAttribute(name = "price")
 	public Double getPrice() {
 		return price;
 	}
@@ -33,6 +45,7 @@ public class Item {
 		this.price = price;
 	}
 
+	@XmlAttribute(name = "comment")
 	public String getDescription() {
 		return description;
 	}

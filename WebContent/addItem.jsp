@@ -9,7 +9,7 @@
 <body>
 <h1>Add Item To The File</h1>
 
-<form method = "post" action="addItemToFile">
+<form method = "get" action="addItemToFile">
 
   <p> Название: <br />
    <input type="text" name="name" pattern="^[А-Яа-яЁёa-zA-Z]+$" /><br /> </p>
