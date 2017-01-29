@@ -1,4 +1,4 @@
-package by.iba.florist.web.customExceptions;
+package by.iba.florist.customExceptions;
 
 public class WrongFileFormatException extends Exception {
 	

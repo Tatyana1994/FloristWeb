@@ -11,14 +11,34 @@
 
 <form method = "get" action="addItemToFile">
 
+   <p>Тип цветка: <br />
+   <select name="flower_type">
+  		<option value="tulip" selected>tulip</option>
+  		<option value="rose">rose</option>
+  		<option value="begonia">begonia</option>
+  		<option value="fikus">fikus</option>
+  		<option value="chrysantemum">chrysantemum</option>
+  		<option value="aloe">aloe</option>  		
+	</select>
+	
   <p> Название: <br />
-   <input type="text" name="name" pattern="^[А-Яа-яЁёa-zA-Z]+$" /><br /> </p>
+   <input type="text" name="name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=30 /><br /> </p>
    <p>Цена: <br />
    <input type="text" name="price" value="0.0" pattern="[0-9]+[\.]?[0-9]+"/><br /> </p>
    
    <p>Описание товара: <br />
-   <textarea name="comment"></textarea> <br /></p>
-
+   <textarea name="comment" cols=22></textarea> <br /></p>
+   
+   <p>Имя файла: <br />
+   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=15 /><br /> </p>
+   
+   <p>Тип файла: <br />
+   <select name="file_type">
+  		<option value="xml" selected>xml</option>
+  		<option value="json">json</option>
+	</select>
+	</p>
+   
    <input type="submit" value="Add Item To File">
 
 </form>

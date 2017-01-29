@@ -9,16 +9,7 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
-	 <servlet>
-        <servlet-name>MainServlet</servlet-name>
-        <servlet-class>by.iba.florist.web.servlet.MainServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MainServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    
+	   
     <servlet>
         <servlet-name>CurrentTime</servlet-name>
         <servlet-class>by.iba.florist.web.servlet.CurrentTime</servlet-class>
@@ -35,6 +26,15 @@
     <servlet-mapping>
         <servlet-name>AddItemToFile</servlet-name>
         <url-pattern>/addItemToFile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetItemListFromFile</servlet-name>
+        <servlet-class>by.iba.florist.web.servlet.GetItemListFromFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetItemListFromFile</servlet-name>
+        <url-pattern>/getItemListFromFile</url-pattern>
     </servlet-mapping>
     
 </web-app>

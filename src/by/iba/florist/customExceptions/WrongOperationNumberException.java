@@ -1,4 +1,4 @@
-package by.iba.florist.web.customExceptions;
+package by.iba.florist.customExceptions;
 
 public class WrongOperationNumberException extends Exception {
 	
@@ -7,7 +7,7 @@ public class WrongOperationNumberException extends Exception {
 	    public WrongOperationNumberException (String message, int num){
 	     
 	        super(message);
-	        number=num;
+	        number = num;
 	        
 	    }
 	
