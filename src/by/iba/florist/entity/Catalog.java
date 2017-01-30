@@ -9,7 +9,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 @XmlRootElement
+@JsonTypeInfo(use = Id.NAME,
+include = JsonTypeInfo.As.PROPERTY,
+property = "type")
 public class Catalog implements Serializable {
 
 	private String file_name;
@@ -18,8 +26,6 @@ public class Catalog implements Serializable {
 	
 	{
 		this.productDatabase = new ArrayList<Flower>();
-		this.file_name = "";
-		this.file_type = "";
 	}
 	
 	public Catalog () {

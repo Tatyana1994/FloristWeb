@@ -1,0 +1,17 @@
+{
+  "type" : "Catalog",
+  "file_name" : null,
+  "file_type" : null,
+  "productDatabase" : [ {
+    "type" : "Aloe",
+    "name" : "Item1",
+    "price" : 2.0,
+    "description" : "promotion",
+    "color" : null,
+    "sort" : null,
+    "id" : 0,
+    "potMaterial" : null,
+    "countryOrigin" : null,
+    "hungary" : false
+  } ]
+}

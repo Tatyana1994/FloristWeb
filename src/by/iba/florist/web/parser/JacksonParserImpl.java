@@ -9,8 +9,10 @@ import by.iba.florist.entity.Catalog;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JacksonParserImpl implements JacksonParser {
 
@@ -18,6 +20,8 @@ public class JacksonParserImpl implements JacksonParser {
 	public Object getObjectFromJSON(File file, Class c) throws WrongFileFormatException {
 		ObjectMapper mapper = new ObjectMapper();
 
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		
 		//JSON from file to Object
 		Object obj;
 		
@@ -38,6 +42,9 @@ public class JacksonParserImpl implements JacksonParser {
 	@Override
 	public void saveObjectToJSON(File file, Object o) {
 		ObjectMapper mapper = new ObjectMapper();
+		
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		
 		Catalog obj = new Catalog();
 
 		//Object to JSON in file

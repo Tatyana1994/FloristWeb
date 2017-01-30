@@ -12,7 +12,7 @@
 <form method = "get" action="getItemListFromFile">
    
    <p>Имя файла: <br />
-   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=15 /><br /> </p>
+   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=20 /><br /> </p>
    
    <p>Тип файла: <br />
    <select name="file_type">

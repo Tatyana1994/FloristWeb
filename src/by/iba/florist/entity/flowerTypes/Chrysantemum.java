@@ -1,6 +1,9 @@
 package by.iba.florist.entity.flowerTypes;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import by.iba.florist.entity.FlowerCut;
 
 public class Chrysantemum extends FlowerCut {
@@ -17,7 +20,8 @@ public class Chrysantemum extends FlowerCut {
 		super(id, name, price);
 	}
 	
-	public Chrysantemum(String name, double price, String description) {
+	@JsonCreator
+	public Chrysantemum(@JsonProperty("name")String name, @JsonProperty("price")double price, @JsonProperty("description")String description) {
 		super(name, price, description);
 	}
 

@@ -1,6 +1,9 @@
 package by.iba.florist.entity.flowerTypes;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import by.iba.florist.entity.FlowerPot;
 
 public class Aloe extends FlowerPot {
@@ -17,7 +20,8 @@ public class Aloe extends FlowerPot {
 		super(id, name, price);
 	}
 	
-	public Aloe(String name, double price, String description) {
+	@JsonCreator
+	public Aloe(@JsonProperty("name")String name, @JsonProperty("price")double price, @JsonProperty("description")String description) {
 		super(name, price, description);
 	}
 

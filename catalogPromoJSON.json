@@ -1,0 +1,39 @@
+{
+  "type" : "Catalog",
+  "file_name" : null,
+  "file_type" : null,
+  "productDatabase" : [ {
+    "type" : "Begonia",
+    "name" : "Item1",
+    "price" : 7.57,
+    "description" : "promotion",
+    "color" : null,
+    "sort" : null,
+    "id" : 0,
+    "potMaterial" : null,
+    "countryOrigin" : null,
+    "hungary" : false
+  }, {
+    "type" : "Begonia",
+    "name" : "Item2",
+    "price" : 7.57,
+    "description" : "promotion",
+    "color" : null,
+    "sort" : null,
+    "id" : 0,
+    "potMaterial" : null,
+    "countryOrigin" : null,
+    "hungary" : false
+  }, {
+    "type" : "Fikus",
+    "name" : "Item3",
+    "price" : 5.688,
+    "description" : "promotion",
+    "color" : null,
+    "sort" : null,
+    "id" : 0,
+    "potMaterial" : null,
+    "countryOrigin" : null,
+    "hungary" : false
+  } ]
+}

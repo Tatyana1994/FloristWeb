@@ -9,10 +9,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import by.iba.florist.console.Color;
 
 @XmlRootElement(name="flower")
 @XmlSeeAlso({ FlowerCut.class, FlowerPot.class }) 
+@JsonTypeInfo(use = Id.NAME,
+include = JsonTypeInfo.As.PROPERTY,
+property = "type")
+@JsonSubTypes({
+@Type(value = FlowerCut.class),
+@Type(value = FlowerPot.class),
+})
 public abstract class Flower implements Serializable{
 
 
@@ -85,11 +98,13 @@ public abstract class Flower implements Serializable{
 		return name;
 	}
 
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	@XmlAttribute(name = "color")
 	public Color getColor() {
 		return color;
 	}
 
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	@XmlAttribute(name = "sort")
 	public String getSort() {
 		return sort;

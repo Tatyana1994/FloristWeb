@@ -3,6 +3,9 @@ package by.iba.florist.entity.flowerTypes;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import by.iba.florist.entity.FlowerCut;
 
 @XmlRootElement(name = "flower")
@@ -20,7 +23,8 @@ public class Tulip extends FlowerCut {
 		super(id, name, price);
 	}
 	
-	public Tulip(String name, double price, String description) {
+	@JsonCreator
+	public Tulip(@JsonProperty("name")String name, @JsonProperty("price")double price, @JsonProperty("description")String description) {
 		super(name, price, description);
 	}
 

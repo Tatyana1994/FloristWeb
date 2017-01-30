@@ -22,7 +22,7 @@
 	</select>
 	
   <p> Название: <br />
-   <input type="text" name="name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=30 /><br /> </p>
+   <input type="text" name="name" pattern="^[А-Яа-яЁёa-zA-Z0-9\s]+$" maxlength=50 /><br /> </p>
    <p>Цена: <br />
    <input type="text" name="price" value="0.0" pattern="[0-9]+[\.]?[0-9]+"/><br /> </p>
    
@@ -30,7 +30,7 @@
    <textarea name="comment" cols=22></textarea> <br /></p>
    
    <p>Имя файла: <br />
-   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=15 /><br /> </p>
+   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=20 /><br /> </p>
    
    <p>Тип файла: <br />
    <select name="file_type">

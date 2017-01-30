@@ -3,6 +3,10 @@ package by.iba.florist.entity;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 import by.iba.florist.console.FreshDegree;
 import by.iba.florist.console.SmellingFlower;
 import by.iba.florist.entity.flowerTypes.Chrysantemum;
@@ -10,6 +14,11 @@ import by.iba.florist.entity.flowerTypes.Rose;
 import by.iba.florist.entity.flowerTypes.Tulip;
 
 @XmlSeeAlso({ Tulip.class, Rose.class, Chrysantemum.class }) 
+@JsonSubTypes({
+@Type(value = Tulip.class),
+@Type(value = Rose.class),
+@Type(value = Chrysantemum.class),
+})
 public abstract class FlowerCut extends Flower implements SmellingFlower {
 
 	private FreshDegree freshness;
@@ -30,6 +39,7 @@ public abstract class FlowerCut extends Flower implements SmellingFlower {
 		super(id, name, price);
 	}
 
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	public FreshDegree getFreshnessDegree() {
 		return freshness;
 	}

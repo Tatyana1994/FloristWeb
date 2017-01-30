@@ -90,8 +90,10 @@ public class AddItemToFile extends HttpServlet {
 					xml_parser.saveObjectToXML(file, cat_new);
 					
 					} else {
-						cat.addItem(fl);
-						xml_parser.saveObjectToXML(file, cat);
+						if (file_name != null) {
+							cat.addItem(fl);
+							xml_parser.saveObjectToXML(file, cat);
+							}
 						}
 			} 
 		} catch (JAXBException e) {
@@ -102,7 +104,7 @@ public class AddItemToFile extends HttpServlet {
 		
 //		try {
 			if (file_type.equals("json")) {
-				JaxbParserImpl json_parser = new JaxbParserImpl();
+				JacksonParserImpl json_parser = new JacksonParserImpl();
 				if (file.exists()) {
 					
 					Catalog cat_new;
@@ -110,18 +112,17 @@ public class AddItemToFile extends HttpServlet {
 						cat_new = (Catalog) json_parser.getObjectFromJSON(file, Catalog.class);
 						cat_new.addItem(fl);				
 						json_parser.saveObjectToJSON (file, cat_new);
-					} catch (JAXBException e) {
+					} catch (WrongFileFormatException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}						
-					} else {
-							cat.addItem(fl);
-							try {
-								json_parser.saveObjectToJSON(file, cat);
-							} catch (JAXBException e) {
-								e.printStackTrace();
-							}
-						}
+				} else {
+					 		if (file_name != null) {
+					 			cat.addItem(fl);
+							json_parser.saveObjectToJSON(file, cat);
+					 		}					
+				}
+				
 			} 	
 //		} 
 		
