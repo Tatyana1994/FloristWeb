@@ -20,6 +20,8 @@
   <button>Add Item To Database</button>
 </form>
 
+<br>
+
 <form method="get" action="getItemList.jsp">
   <button>Get Item List From Database</button>
 </form>

@@ -72,7 +72,6 @@ public class Catalog implements Serializable {
 	
 	public void addItem(Flower fl) {
 		this.getProductDatabase().add(fl);
-		System.out.println("[addItem(Flower fl)] Flower is added to catalog " + fl.toString());
 	}
 
 	public void setProductDatabase(ArrayList<Flower> productDatabase) {
