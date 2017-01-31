@@ -12,7 +12,7 @@
 <form method = "get" action="addItemToFile">
 
    <p>Тип цветка: <br />
-   <select name="flower_type">
+   <select name="flowerType">
   		<option value="tulip" selected>tulip</option>
   		<option value="rose">rose</option>
   		<option value="begonia">begonia</option>
@@ -30,10 +30,10 @@
    <textarea name="comment" cols=22></textarea> <br /></p>
    
    <p>Имя файла: <br />
-   <input type="text" name="file_name" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=20 /><br /> </p>
+   <input type="text" name="fileName" pattern="^[А-Яа-яЁёa-zA-Z0-9]+$" maxlength=20 /><br /> </p>
    
    <p>Тип файла: <br />
-   <select name="file_type">
+   <select name="fileType">
   		<option value="xml" selected>xml</option>
   		<option value="json">json</option>
 	</select>

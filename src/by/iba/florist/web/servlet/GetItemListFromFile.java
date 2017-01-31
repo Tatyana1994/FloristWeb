@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 
 import by.iba.florist.customExceptions.WrongFileFormatException;
 import by.iba.florist.entity.Catalog;
 import by.iba.florist.entity.Flower;
-import by.iba.florist.web.parser.JacksonParserImpl;
-import by.iba.florist.web.parser.JaxbParserImpl;
+import by.iba.florist.web.parser.JacksonParser;
+import by.iba.florist.web.parser.JaxbParser;
 
 /**
  * Servlet implementation class GetItemfromFile
@@ -24,6 +26,8 @@ import by.iba.florist.web.parser.JaxbParserImpl;
 @WebServlet("/GetItemfromFile")
 public class GetItemListFromFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger logger = Logger.getLogger(GetItemListFromFile.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,67 +42,76 @@ public class GetItemListFromFile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String file_name   = request.getParameter("file_name");
-		String file_type   = request.getParameter("file_type");
+		String fileName   = request.getParameter("fileName");
+		String fileType   = request.getParameter("fileType");
 		
 		response.setContentType("text/html; charset=utf-8");	
 		PrintWriter out = response.getWriter();
 		
 		Catalog cat = new Catalog();
-		File file = cat.initFileCatalog(file_name, file_type);
+		File file = cat.initFileCatalog(fileName, fileType);
 		
 		if (file.exists()) {
-			if (file_type.equals("xml")) {
-				JaxbParserImpl xml_parser = new JaxbParserImpl();
-				Catalog cat_extract;
+			if (fileType.equals("xml")) {
+				JaxbParser xmlParser = new JaxbParser();
+				Catalog catExtract;
 				try {
-					cat_extract = (Catalog) xml_parser.getObjectFromXML(file, Catalog.class);
-					cat_extract.showList();
+					catExtract = (Catalog) xmlParser.getObjectFromXML(file, Catalog.class);
+					catExtract.showList();
 
-					out.println("<h3>ProductList From Catalog - " + file_name + "." + file_type +  "</h3>");
+					out.println("<h3>ProductList From Catalog - " + fileName + "." + fileType +  "</h3>");
 					out.println("<table border=2>");
 					out.println("<tr><td><b>Name</b></td><td><b>Price</b></td><td><b>Description</b></td></tr>");
-					for (Flower fl : cat_extract.getProductDatabase()) {
+					for (Flower fl : catExtract.getProductDatabase()) {
 						out.println("<tr><td>" + fl.getName() + "</td>" + 
 									"<td>" + fl.getPrice() + "</td>" +
 								    "<td>" + fl.getDescription() + "</td></tr>");
 					}
 					out.println("</table>");
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
 				} catch (JAXBException e) {
+					logger.error(">>>>>>>>>> ERROR - " + file.getAbsolutePath() + " - Access is denied");
+					out.println("FileNotFoundExceptionERROR - Access is denied");
 					e.printStackTrace();
 				} catch (WrongFileFormatException e) {
+					out.println("WrongFileFormatExceptionERROR");
 					e.printStackTrace();
-				}				
+				}
 			}
-			if (file_type.equals("json")) {
-					JacksonParserImpl json_parser = new JacksonParserImpl();
-					Catalog cat_extract;
+			if (fileType.equals("json")) {
+					JacksonParser jsonParser = new JacksonParser();
+					Catalog catExtract;
 						try {
-							cat_extract = (Catalog) json_parser.getObjectFromJSON(file, Catalog.class);
-							cat_extract.showList();
+							catExtract = (Catalog) jsonParser.getObjectFromJSON(file, Catalog.class);
+							catExtract.showList();
 
-							out.println("<h3>ProductList From Catalog - " + file_name + "." + file_type +  "</h3>");
+							out.println("<h3>ProductList From Catalog - " + fileName + "." + fileType +  "</h3>");
 							out.println("<table border=2>");
 							out.println("<tr><td><b>Name</b></td><td><b>Price</b></td><td><b>Description</b></td></tr>");
-					    	for (Flower fl : cat_extract.getProductDatabase()) {
+					    	for (Flower fl : catExtract.getProductDatabase()) {
 								out.println("<tr><td>" + fl.getName() + "</td>" + 
 											"<td>" + fl.getPrice() + "</td>" +
 										    "<td>" + fl.getDescription() + "</td></tr>");
 							}
 							out.println("</table>");
-								
-						} catch (WrongFileFormatException e) {
+															
+						} catch (Exception e) {
+							logger.error(">>>>>>>>>> ERROR - " + file.getAbsolutePath() + " - Access is denied");
+							out.println("FileNotFoundExceptionERROR - Access is denied");
 							e.printStackTrace();
-						}
-							
-			}
+						} 
 		  
+			} 
 		} else {
 			  out.println("<h3><font color=red>ERROR! File doesn't exist</h3>" );
-		  }
+		}
 				
-	}
+		out.println("<br><p><a href = \"index.jsp\">HOME</a></p>");	
 		
+}
+	
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

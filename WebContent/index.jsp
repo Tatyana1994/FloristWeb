@@ -10,21 +10,9 @@
 
 <h1>Web Service For Florist Salon</h1>
 
-<form action="/FloristWeb/currentTime">
-  <button>CurrentTime</button>
-</form>
-
-<br>
-
-<form method="get" action="addItem.jsp">
-  <button>Add Item To Database</button>
-</form>
-
-<br>
-
-<form method="get" action="getItemList.jsp">
-  <button>Get Item List From Database</button>
-</form>
+<p><a href = "/FloristWeb/currentTime"> Current Date</a></p>
+<p><a href = "addItem.jsp"> Add Item To Database</a></p>
+<p><a href = "getItemList.jsp"> Get Item List From File</a></p>
 
 </body>
 </html>

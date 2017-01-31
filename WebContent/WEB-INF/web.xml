@@ -35,6 +35,10 @@
     <servlet>
         <servlet-name>GetItemListFromFile</servlet-name>
         <servlet-class>by.iba.florist.web.servlet.GetItemListFromFile</servlet-class>
+        <init-param>
+		      <param-name>log4j-properties-location</param-name>
+		      <param-value>WEB-INF\log4j.properties</param-value>
+   		</init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetItemListFromFile</servlet-name>

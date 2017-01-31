@@ -28,11 +28,6 @@ public class Tulip extends FlowerCut {
 		super(name, price, description);
 	}
 
-	// @Override
-	// public String toString() {
-	// return "Tulip sort: " + getSort();
-	// }
-
 	public void spoil() {
 		System.out.println("Tulip is spoiled");
 	}

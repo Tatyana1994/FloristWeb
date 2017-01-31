@@ -1,6 +1,7 @@
 package by.iba.florist.console;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import javax.xml.bind.JAXBException;
 import by.iba.florist.entity.Cart;
 import by.iba.florist.entity.Catalog;
 import by.iba.florist.entity.Flower;
-import by.iba.florist.web.parser.JaxbParserImpl;
+import by.iba.florist.web.parser.JaxbParser;
 import by.iba.florist.web.parser.*;
 import by.iba.florist.customExceptions.*;
 
@@ -89,7 +90,7 @@ public class ConsoleMenuCartEditor {
 	}
 
 	@SuppressWarnings("finally")
-	public void executeCartEditor() throws JAXBException, WrongFileFormatException, FileXMLDoesNotExistYet, WrongFileFormatException {
+	public void executeCartEditor() throws JAXBException, WrongFileFormatException, FileXMLDoesNotExistYet, WrongFileFormatException, FileNotFoundException {
 
 		int operation = this.getOperation();
 		switch (operation) {
@@ -173,7 +174,7 @@ public class ConsoleMenuCartEditor {
 		}
 		
 		case 12: {
-			JaxbParserImpl parser = new JaxbParserImpl();
+			JaxbParser parser = new JaxbParser();
 	        File file_xml = new File("cart.xml");
 	        
 			parser.saveObjectToXML(file_xml, cart);
@@ -187,17 +188,17 @@ public class ConsoleMenuCartEditor {
 	        
 	        if (this.is_XML_saved == false) throw new FileXMLDoesNotExistYet("File doesn't exist yet!");
 			
-			JaxbParserImpl parser = new JaxbParserImpl();
+			JaxbParser parser = new JaxbParser();
 	        File file_xml = new File("cart.xml");
 	        
-	        Cart cart = (Cart) parser.getObjectFromXML(file_xml, Catalog.class);
+	        Cart cart = (Cart) parser.getObjectFromXML(file_xml, Cart.class);
 	        System.out.println(cart);
 	        
 	        break;
 		}
 		
 		case 14: {
-			JaxbParserImpl parser = new JaxbParserImpl();
+			JaxbParser parser = new JaxbParser();
 	        File file_json = new File("cart.json");
 	        
 			parser.saveObjectToJSON(file_json, cart);
@@ -205,7 +206,7 @@ public class ConsoleMenuCartEditor {
 		}
 		
 		case 15: {
-			JaxbParserImpl parser = new JaxbParserImpl();
+			JaxbParser parser = new JaxbParser();
 	        File file_json = new File("cart.json");
 	        
 			parser.getObjectFromJSON(file_json, cart.getClass());

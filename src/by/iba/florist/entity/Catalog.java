@@ -20,8 +20,8 @@ include = JsonTypeInfo.As.PROPERTY,
 property = "type")
 public class Catalog implements Serializable {
 
-	private String file_name;
-	private String file_type;
+	private String fileName;
+	private String fileType;
 	private ArrayList<Flower> productDatabase;
 	
 	{
@@ -32,28 +32,26 @@ public class Catalog implements Serializable {
 		
 	}
 	
-	public File initFileCatalog(String file_name, String file_type) {
-		String filePath = new String("D:/java_training/web/workspace/FloristWeb/" + file_name + "." + file_type);	
+	public File initFileCatalog(String fileName, String fileType) {
+		String filePath = new String("D:/java_training/web/workspace/FloristWeb/" + fileName + "." + fileType);	
 		File file = new File(filePath);
-		System.out.println("File is initialized: " + file.getAbsolutePath());
-		return file;
-		
+		return file;	
 	}
 
-	public String getFile_name() {
-		return file_name;
+	public String getfileName() {
+		return fileName;
 	}
 
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
+	public void setfileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public String getFile_type() {
-		return file_type;
+	public String getfileType() {
+		return fileType;
 	}
 
-	public void setFile_type(String file_type) {
-		this.file_type = file_type;
+	public void setfileType(String fileType) {
+		this.fileType = fileType;
 	}
 
 	@XmlElementWrapper(name = "productList")
@@ -80,15 +78,15 @@ public class Catalog implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Catalog [file_name=" + file_name + ", file_type=" + file_type + "]";
+		return "Catalog [fileName=" + fileName + ", fileType=" + fileType + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((file_name == null) ? 0 : file_name.hashCode());
-		result = prime * result + ((file_type == null) ? 0 : file_type.hashCode());
+		result = prime * result + ((fileName == null) ? 0 : fileName.hashCode());
+		result = prime * result + ((fileType == null) ? 0 : fileType.hashCode());
 		return result;
 	}
 
@@ -101,15 +99,15 @@ public class Catalog implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Catalog other = (Catalog) obj;
-		if (file_name == null) {
-			if (other.file_name != null)
+		if (fileName == null) {
+			if (other.fileName != null)
 				return false;
-		} else if (!file_name.equals(other.file_name))
+		} else if (!fileName.equals(other.fileName))
 			return false;
-		if (file_type == null) {
-			if (other.file_type != null)
+		if (fileType == null) {
+			if (other.fileType != null)
 				return false;
-		} else if (!file_type.equals(other.file_type))
+		} else if (!fileType.equals(other.fileType))
 			return false;
 		return true;
 	}	

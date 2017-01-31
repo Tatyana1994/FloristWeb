@@ -16,6 +16,9 @@ import javax.xml.bind.JAXBException;
 import org.apache.log4j.*;
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.sun.istack.internal.logging.*;
 
 import by.iba.florist.entity.Catalog;
@@ -79,113 +82,134 @@ public class AddItemToFile extends HttpServlet {
 		String name        = request.getParameter("name");
 		Double price       = Double.parseDouble(request.getParameter("price"));
 		String comment     = request.getParameter("comment");
-		String file_name   = request.getParameter("file_name");
-		String file_type   = request.getParameter("file_type");
-		String flower_type = request.getParameter("flower_type");
+		String fileName   = request.getParameter("fileName");
+		String fileType   = request.getParameter("fileType");
+		String flowerType = request.getParameter("flowerType");
 		
 		logger.debug(">>>>>>>>>>>> name = " + name);
 		logger.debug(">>>>>>>>>>>> price = " + price);
 		logger.debug(">>>>>>>>>>>> comment = " + comment);
-		logger.debug(">>>>>>>>>>>> file_name = " + file_name);
-		logger.debug(">>>>>>>>>>>> file_type = " + file_type);
-		logger.debug(">>>>>>>>>>>> flower_type = " + flower_type);
-		
-		System.out.println("Save to File...");
-		System.out.println("Name: " + name + "; \nPrice: " + price + "; \nDescription: " + comment);		
+		logger.debug(">>>>>>>>>>>> fileName = " + fileName);
+		logger.debug(">>>>>>>>>>>> fileType = " + fileType);
+		logger.debug(">>>>>>>>>>>> flowerType = " + flowerType);
 		
 		response.setContentType("text/html; charset=utf-8");	
 		PrintWriter out = response.getWriter();
-		out.println("<p>Item " + name + " is added to Catalog!</p>");		
+		out.println("<h3>Action Add <font color=red>Item = " + name + "</font> to Catalog...</h3>");		
 		
 		Catalog cat = new Catalog();	
-		File file = cat.initFileCatalog(file_name, file_type);
+		File file = cat.initFileCatalog(fileName, fileType);
 				
 		Flower fl = null;
 		
-		if (flower_type.equals("aloe")) {
+		if (flowerType.equals("aloe")) {
 			Flower fl_new = new Aloe(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
-		if (flower_type.equals("begonia")) {
+		if (flowerType.equals("begonia")) {
 			Flower fl_new = new Begonia(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
-		if (flower_type.equals("fikus")) {
+		if (flowerType.equals("fikus")) {
 			Flower fl_new = new Fikus(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
-		if (flower_type.equals("rose")) {
+		if (flowerType.equals("rose")) {
 			Flower fl_new = new Rose(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
-		if (flower_type.equals("tulip")) {
+		if (flowerType.equals("tulip")) {
 			Flower fl_new = new Tulip(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
-		if (flower_type.equals("chrysantemum")) {
+		if (flowerType.equals("chrysantemum")) {
 			Flower fl_new = new Chrysantemum(name, price, comment);
 			fl = fl_new;
-			logger.info(">>>>>>>>>>>> ITEM type = " + flower_type);
+			logger.info(">>>>>>>>>>>> ITEM type = " + flowerType);
 		}
 		try {
-			if (file_type.equals("xml")) {
-				JaxbParserImpl xml_parser = new JaxbParserImpl();
+			if (fileType.equals("xml")) {
+				JaxbParser xmlParser = new JaxbParser();
 				if (file.exists()) {
 					logger.info(">>>>>>>>>>>> File exists already = " + file.getAbsolutePath());
 					logger.info(">>>>>>>>>>>> GET object from XML file = " + fl.toString());
-					Catalog cat_new = (Catalog) xml_parser.getObjectFromXML(file, Catalog.class);				
+				
+					Catalog cat_new = (Catalog) xmlParser.getObjectFromXML(file, Catalog.class);
 					cat_new.addItem(fl);	
 					logger.info(">>>>>>>>>>>> SAVE object to XML file = " + file.getAbsolutePath());
-					xml_parser.saveObjectToXML(file, cat_new);
+					xmlParser.saveObjectToXML(file, cat_new);
+					out.println("<p>Item is added to existing catalog: " + fileName + "." + fileType + "</p>");
 					
 					} else {
 						logger.info(">>>>>>>>>>>> File doesn't exist. Create the new one = " + file.getAbsolutePath());
-						if (file_name != null) {
+						if (fileName != null) {
 							cat.addItem(fl);
-							xml_parser.saveObjectToXML(file, cat);
+							xmlParser.saveObjectToXML(file, cat);
+							
+							out.println("<p>Item is added to the new created catalog: " + fileName + "." + fileType + "</p>");
+							
 							}
 						}
 			} 
 		} catch (JAXBException e) {
 			logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
 			e.printStackTrace();
+			out.println("<p>" + e.getMessage() + "</p>");
 		} catch (WrongFileFormatException e) {
 			logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
 			e.printStackTrace();
+			out.println("<p>" + e.getMessage() + "</p>");
 		}
 		
-//		try {
-			if (file_type.equals("json")) {
-				JacksonParserImpl json_parser = new JacksonParserImpl();
+		try {
+			if (fileType.equals("json")) {
+				JacksonParser jsonParser = new JacksonParser();
 				if (file.exists()) {
 					logger.info(">>>>>>>>>>>> File exists already = " + file.getAbsolutePath());
 					Catalog cat_new;
 					try {
 						logger.info(">>>>>>>>>>>> GET object from JSON file = " + fl.toString());
-						cat_new = (Catalog) json_parser.getObjectFromJSON(file, Catalog.class);
+						cat_new = (Catalog) jsonParser.getObjectFromJSON(file, Catalog.class);
 						cat_new.addItem(fl);				
 						logger.info(">>>>>>>>>>>> SAVE object from JSON file = " + file.getAbsolutePath());
-						json_parser.saveObjectToJSON (file, cat_new);
+						jsonParser.saveObjectToJSON (file, cat_new);
+						
+						out.println("<p>Item is added to existing catalog: " + fileName + "." + fileType + "</p>");
+						
 					} catch (WrongFileFormatException e) {
 						logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
 						e.printStackTrace();
-					}						
-				} else {
+						}  
+					} else {
 							logger.info(">>>>>>>>>>>> File doesn't exist. Create the new one = " + file.getAbsolutePath());
-					 		if (file_name != null) {
+					 		if (fileName != null) {
 					 			cat.addItem(fl);
-					 			json_parser.saveObjectToJSON(file, cat);
+					 			jsonParser.saveObjectToJSON(file, cat);
+					 			
+					 			out.println("<p>Item is added to the new created catalog: " + fileName + "." + fileType + "</p>");
 					 		}					
-				}
+					}
 				
-			} 	
-//		} 
-		
+			}			
+			out.println("<a href = \"index.jsp\">HOME</a>");	
+		} catch (JsonGenerationException e) {
+			logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
+			e.printStackTrace();
+			out.println("<p>" + e.getMessage() + "</p>");
+		} catch (JsonMappingException e) {
+			logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
+			e.printStackTrace();
+			out.println("<p>" + e.getMessage() + "</p>");
+		} catch (JsonProcessingException e) {
+			logger.error(">>>>>>>>>>>> ERROR = " + e.getMessage());
+			e.printStackTrace();
+			out.println("<p>" + e.getMessage() + "</p>");
+		} 
 }
 			
 		

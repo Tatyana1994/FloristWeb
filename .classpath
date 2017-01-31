@@ -19,14 +19,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="var" path="ECLIPSELINK_SRC"/>
-	<classpathentry exported="true" kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/eclipselink.jar"/>
-	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/json-simple-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/jackson-annotations-2.1.2-sources.jar"/>
-	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/jackson-core-2.1.2.jar"/>
-	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/jackson-databind-2.1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/org.eclipse.persistence.moxy_2.3.1.v20110908-r10021.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/jackson-annotations-2.1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/java_training/web/workspace/FloristWeb/src/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/jackson-annotations-2.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/jackson-annotations-2.1.2-sources.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/jackson-core-2.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/jackson-databind-2.1.2.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/javax.json-1.0.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/java_training/web/workspace/FloristWeb/WebContent/WEB-INF/lib/org.eclipse.persistence.moxy_2.3.1.v20110908-r10021.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

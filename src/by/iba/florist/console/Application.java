@@ -1,6 +1,7 @@
 package by.iba.florist.console;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 
@@ -43,7 +44,7 @@ public class Application {
 	}
 
 	public static void main(String[] args) throws WrongOperationNumberException, JAXBException, WrongFileFormatException,
-													FileXMLDoesNotExistYet {
+													FileXMLDoesNotExistYet, FileNotFoundException {
 
 		initApplication();
 		Cart cart = new Cart();		
