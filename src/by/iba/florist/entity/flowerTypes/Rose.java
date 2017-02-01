@@ -11,6 +11,10 @@ import by.iba.florist.entity.FlowerCut;
 @XmlRootElement(name = "flower")
 public class Rose extends FlowerCut {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int steamLength;
 
 	public Rose(String name, double price) {

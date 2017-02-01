@@ -8,10 +8,8 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import by.iba.florist.entity.Cart;
-import by.iba.florist.entity.Catalog;
 import by.iba.florist.entity.Flower;
 import by.iba.florist.web.parser.JaxbParser;
-import by.iba.florist.web.parser.*;
 import by.iba.florist.customExceptions.*;
 
 public class ConsoleMenuCartEditor {

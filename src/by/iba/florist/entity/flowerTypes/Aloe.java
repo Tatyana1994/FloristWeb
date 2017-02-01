@@ -8,6 +8,11 @@ import by.iba.florist.entity.FlowerPot;
 
 public class Aloe extends FlowerPot {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Aloe(String name, double price) {
 		super(name, price);
 	}

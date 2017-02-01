@@ -1,9 +1,8 @@
 package by.iba.florist.web.parser;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -12,15 +11,11 @@ import javax.xml.bind.Unmarshaller;
 import by.iba.florist.customExceptions.*;
 import by.iba.florist.web.servlet.AddItemToFile;
 
-import org.eclipse.persistence.jaxb.MarshallerProperties;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 
-import org.apache.log4j.*;
 import org.apache.log4j.Logger;
 
 public class JaxbParser implements JsonXmlParser {
-
-	private static Logger logger = Logger.getLogger(AddItemToFile.class);
 	
 	@Override
     public <T> T getObjectFromXML(File file, Class<T> c) throws JAXBException, WrongFileFormatException, FileNotFoundException {
@@ -28,9 +23,14 @@ public class JaxbParser implements JsonXmlParser {
         if (file.getName().indexOf(".xml") == -1) {
         	throw new WrongFileFormatException("File is not of appropriate format");
         }		
+        
 		JAXBContext context = JAXBContext.newInstance(c); 
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        T object = (T) unmarshaller.unmarshal(file);      
+
+        FileInputStream fileInput = new FileInputStream(file); 
+        
+        T object = (T) unmarshaller.unmarshal(fileInput);  
+        
         return object;
         
     }
@@ -41,7 +41,6 @@ public class JaxbParser implements JsonXmlParser {
         JAXBContext context = JAXBContext.newInstance(o.getClass());      
         Marshaller marshaller = context.createMarshaller();     
         marshaller.marshal(o, file);  
-        System.out.println("Object is saved in XML format");
         
     }
 
@@ -59,8 +58,7 @@ public class JaxbParser implements JsonXmlParser {
      	unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, true);   	
 		unmarshaller.setProperty(UnmarshallerProperties.JSON_ATTRIBUTE_PREFIX, "@");	        
 		//StreamSource source = new StreamSource(file);	
-        Object obj = (Object) unmarshaller.unmarshal(file);     
-        System.out.println(obj);           
+        Object obj = (Object) unmarshaller.unmarshal(file);    
         return obj;      
 	}
 
@@ -76,8 +74,7 @@ public class JaxbParser implements JsonXmlParser {
        
         marshaller.setProperty("eclipselink.json.include-root", false);       
        
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        System.out.println("Object is saved in JSON format");       
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true); 
         marshaller.marshal(o, file);
 		
 	}

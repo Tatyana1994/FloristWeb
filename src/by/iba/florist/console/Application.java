@@ -50,7 +50,6 @@ public class Application {
 		Cart cart = new Cart();		
 		System.out.println(cart.toString());
 		ConsoleMenuCartEditor cm = new ConsoleMenuCartEditor(cart);
-		String fileName = new String("flowers.data");
 
 		while (true) {
 			cm.chooseOperation();

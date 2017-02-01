@@ -8,6 +8,11 @@ import by.iba.florist.entity.FlowerCut;
 
 public class Chrysantemum extends FlowerCut {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Chrysantemum(String name, double price) {
 		super(name, price);
 	}

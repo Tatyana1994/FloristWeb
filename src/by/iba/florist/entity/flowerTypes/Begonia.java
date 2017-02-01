@@ -9,6 +9,11 @@ import by.iba.florist.entity.FlowerPot;
 
 public class Begonia extends FlowerPot implements BloomingFlower {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Begonia(String name, double price) {
 		super(name, price);
 	}

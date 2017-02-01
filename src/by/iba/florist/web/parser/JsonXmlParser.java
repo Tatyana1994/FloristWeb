@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import javax.xml.bind.JAXBException;
 
 import by.iba.florist.customExceptions.WrongFileFormatException;
-import by.iba.florist.customExceptions.*;
 
 public interface JsonXmlParser {
 	

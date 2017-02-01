@@ -68,11 +68,14 @@ public class GetItemListFromFile extends HttpServlet {
 								    "<td>" + fl.getDescription() + "</td></tr>");
 					}
 					out.println("</table>");
-				} catch (FileNotFoundException e) {
+				} catch (IOException e) {
+					logger.error(">>>>>>>>>> ERROR - " + e.getMessage());
+					out.println("<font color=red>FileNotFoundExceptionERROR: </font>" + e.getMessage());
+					out.println("<p><b>Try again!</b></p>");
 					e.printStackTrace();
 				} catch (JAXBException e) {
 					logger.error(">>>>>>>>>> ERROR - " + file.getAbsolutePath() + " - Access is denied");
-					out.println("FileNotFoundExceptionERROR - Access is denied");
+					out.println("JAXBExceptionERROR - Access is denied");
 					e.printStackTrace();
 				} catch (WrongFileFormatException e) {
 					out.println("WrongFileFormatExceptionERROR");
@@ -84,7 +87,6 @@ public class GetItemListFromFile extends HttpServlet {
 					Catalog catExtract;
 						try {
 							catExtract = (Catalog) jsonParser.getObjectFromJSON(file, Catalog.class);
-							catExtract.showList();
 
 							out.println("<h3>ProductList From Catalog - " + fileName + "." + fileType +  "</h3>");
 							out.println("<table border=2>");

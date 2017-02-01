@@ -11,6 +11,11 @@ import by.iba.florist.entity.FlowerCut;
 @XmlRootElement(name = "flower")
 public class Tulip extends FlowerCut {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Tulip(String name, double price) {
 		super(name, price);
 	}

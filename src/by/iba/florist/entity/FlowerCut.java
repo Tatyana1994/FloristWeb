@@ -21,6 +21,10 @@ import by.iba.florist.entity.flowerTypes.Tulip;
 })
 public abstract class FlowerCut extends Flower implements SmellingFlower {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private FreshDegree freshness;
 
 	public FlowerCut(String name, double price) {

@@ -22,6 +22,10 @@ import by.iba.florist.entity.flowerTypes.Tulip;
 })
 public abstract class FlowerPot extends Flower {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String potMaterial;
 	private String countryOrigin;
 	private boolean hungary;

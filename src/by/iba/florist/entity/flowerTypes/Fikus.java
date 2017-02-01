@@ -8,6 +8,11 @@ import by.iba.florist.entity.FlowerPot;
 
 public class Fikus extends FlowerPot {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Fikus(String name, double price) {
 		super(name, price);
 	}
